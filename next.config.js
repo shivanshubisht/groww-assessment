@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    scrollRestoration: true,
+    typedRoutes: true,
+  },
   images: {
     remotePatterns: [
       {

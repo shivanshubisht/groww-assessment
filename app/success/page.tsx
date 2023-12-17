@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { useProductStore } from "@/lib/store";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Table,

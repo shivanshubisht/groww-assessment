@@ -5,7 +5,7 @@ import { MapPin, Phone } from "lucide-react";
 
 import { merchantSchema, productSchema } from "@/lib/schema";
 import { useProductStore } from "@/lib/store";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -26,8 +26,6 @@ export async function Checkout() {
   );
   const data = productSchema.parse(await response.json());
 
-  console.log(data);
-
   const merchantDetails = await fetch(
     `https://groww-intern-assignment.vercel.app/v1/api/merchant-metadata`,
   );
@@ -43,9 +41,6 @@ export async function Checkout() {
   const delivery = Number((totalPrice * 0.05).toFixed(2));
 
   const finalPrice = Number((totalPrice + delivery).toFixed(2));
-
-  useProductStore.setState({ products: data });
-  console.log(useProductStore.getState().products);
 
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">

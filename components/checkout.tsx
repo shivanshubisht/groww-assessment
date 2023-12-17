@@ -43,7 +43,7 @@ export async function Checkout() {
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
       <aside className="hidden border-r bg-background/40 dark:bg-background/40 lg:block">
-        <div className="sticky top-0 flex flex-col gap-2 ">
+        <div className="sticky top-0 flex flex-col gap-2">
           <div className="flex h-[60px] items-center border-b px-6">
             <Link className="flex items-center gap-2 font-semibold" href="#">
               <Image

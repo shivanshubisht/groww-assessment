@@ -41,9 +41,9 @@ export async function Checkout() {
   const finalPrice = totalPrice + delivery;
 
   return (
-    <div className="grid h-screen min-h-screen w-full overflow-hidden lg:grid-cols-[280px_1fr]">
-      <div className="hidden border-r bg-gray-100/40 dark:bg-gray-800/40 lg:block">
-        <div className="flex h-full max-h-screen flex-col gap-2">
+    <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
+      <aside className="hidden border-r bg-background/40 dark:bg-background/40 lg:block">
+        <div className="sticky top-0 flex flex-col gap-2 ">
           <div className="flex h-[60px] items-center border-b px-6">
             <Link className="flex items-center gap-2 font-semibold" href="#">
               <Image
@@ -65,7 +65,7 @@ export async function Checkout() {
                 Home
               </Link>
               <Link
-                className="flex items-center gap-3 rounded-lg bg-gray-100 px-3 py-2 text-gray-900 transition-all hover:text-gray-900 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-gray-50"
+                className="flex items-center gap-3 rounded-lg bg-background px-3 py-2 text-gray-900 transition-all hover:text-gray-900 dark:bg-background dark:text-gray-50 dark:hover:text-gray-50"
                 href="#"
               >
                 <ShoppingCartIcon className="h-4 w-4" />
@@ -74,9 +74,9 @@ export async function Checkout() {
             </nav>
           </div>
         </div>
-      </div>
-      <div className="flex h-screen flex-col">
-        <header className="flex h-14 items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40 lg:h-[60px]">
+      </aside>
+      <div className="relative flex min-h-screen flex-col">
+        <header className="sticky top-0 flex h-14 items-center gap-4 border-b bg-background/40 px-6 backdrop-blur-md dark:bg-background/40 lg:h-[60px]">
           <Link className="lg:hidden" href="#">
             <Image
               src={merchantData.merchantLogo}

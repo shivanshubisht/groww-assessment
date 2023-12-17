@@ -90,7 +90,10 @@ export default function Success() {
               </div>
             </CardContent>
           </Card>
-          <Link href="/" className={buttonVariants({ variant: "default" })}>
+          <Link
+            href="/checkout"
+            className={buttonVariants({ variant: "default" })}
+          >
             Return to Home
           </Link>
         </div>

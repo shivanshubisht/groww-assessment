@@ -42,6 +42,8 @@ export async function Checkout() {
 
   const finalPrice = Number((totalPrice + delivery).toFixed(2));
 
+  useProductStore.setState({ products: data });
+
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
       <aside className="hidden border-r bg-background/40 dark:bg-background/40 lg:block">

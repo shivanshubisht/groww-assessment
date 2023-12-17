@@ -3,17 +3,17 @@ import { create } from "zustand";
 
 import type { productSchema } from "@/lib/schema";
 
-type TData = z.infer<typeof productSchema>;
+type TProducts = z.infer<typeof productSchema>;
 
 type ProductStore = {
-  data: TData;
-  setData: (data: TData) => void;
+  products: TProducts;
+  setProducts: (products: TProducts) => void;
 };
 
 export const useProductStore = create<ProductStore>((set) => ({
-  data: {
+  products: {
     products: [],
     paymentMethods: [],
   },
-  setData: (data) => set({ data }),
+  setProducts: (products) => set({ products }),
 }));

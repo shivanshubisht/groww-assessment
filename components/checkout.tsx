@@ -1,9 +1,11 @@
 import type { SVGProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { MapPin, Phone } from "lucide-react";
 
 import { merchantSchema, productSchema } from "@/lib/schema";
-import { Button } from "@/components/ui/button";
+import { useProductStore } from "@/lib/store";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -12,6 +14,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
+
+import { Avatar } from "./ui/avatar";
 
 export async function Checkout() {
   const response = await fetch(
@@ -38,7 +42,10 @@ export async function Checkout() {
 
   const delivery = Number((totalPrice * 0.05).toFixed(2));
 
-  const finalPrice = totalPrice + delivery;
+  const finalPrice = Number((totalPrice + delivery).toFixed(2));
+
+  useProductStore.setState({ products: data });
+  console.log(useProductStore.getState().products);
 
   return (
     <div className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">
@@ -126,6 +133,34 @@ export async function Checkout() {
             <div className="flex flex-col gap-6 md:col-span-2 lg:col-span-3 xl:col-span-2">
               <Card>
                 <CardHeader>
+                  <CardTitle>Shipping Details</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center gap-4">
+                    <Avatar className="bg-primary/50" />
+                    <div className="flex flex-col">
+                      <span className="font-semibold">Shivanshu Bisht</span>
+                      <span className="text-sm text-gray-500">
+                        social@shivanshu.in
+                      </span>
+                    </div>
+                  </div>
+                </CardContent>
+                <CardContent>
+                  <div className="flex flex-col gap-4 px-2">
+                    <div className="flex flex-row gap-4">
+                      <MapPin />
+                      IIIT Vadodara
+                    </div>
+                    <div className="flex flex-row gap-4">
+                      <Phone />
+                      +91 99992 14924
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardHeader>
                   <CardTitle>Payment Summary</CardTitle>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4">
@@ -144,7 +179,14 @@ export async function Checkout() {
                   </div>
                 </CardContent>
                 <CardFooter className="flex justify-end gap-2">
-                  <Button>Complete Checkout</Button>
+                  <Link
+                    href="/payment"
+                    className={buttonVariants({
+                      variant: "default",
+                    })}
+                  >
+                    Complete Checkout
+                  </Link>
                 </CardFooter>
               </Card>
             </div>

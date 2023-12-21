@@ -42,6 +42,7 @@ export async function Checkout() {
 
   const finalPrice = Number((totalPrice + delivery).toFixed(2));
 
+  /** @see https://github.com/pmndrs/zustand/discussions/2200#discussioncomment-7879890 */
   useProductStore.setState({ products: data });
 
   return (

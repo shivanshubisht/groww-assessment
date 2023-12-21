@@ -1,8 +1,6 @@
-import type { SVGProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useProductStore } from "@/lib/store";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -13,6 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useProductStore } from "@/lib/store";
+import { X } from "lucide-react";
 
 export default function Failed() {
   const products = useProductStore.getState().products.products;
@@ -23,7 +23,7 @@ export default function Failed() {
     <div className="min-h-screen px-4 py-10 md:px-8 lg:px-16">
       <div className="mx-auto max-w-3xl">
         <div className="flex flex-col items-center space-y-6">
-          <CrossIcon className="h-24 w-24 text-red-500" />
+          <X className="h-24 w-24 text-red-500" />
           <h2 className="text-center text-3xl">Transaction Failed</h2>
           <Card>
             <CardHeader>
@@ -85,25 +85,5 @@ export default function Failed() {
         </div>
       </div>
     </div>
-  );
-}
-
-function CrossIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="18" y1="6" x2="6" y2="18" />
-      <line x1="6" y1="6" x2="18" y2="18" />
-    </svg>
   );
 }

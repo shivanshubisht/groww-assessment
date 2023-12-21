@@ -1,8 +1,7 @@
-import type { SVGProps } from "react";
+import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { useProductStore } from "@/lib/store";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -13,6 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useProductStore } from "@/lib/store";
 
 export default function Success() {
   const products = useProductStore.getState().products.products;
@@ -30,7 +30,7 @@ export default function Success() {
     <div className="min-h-screen px-4 py-10 md:px-8 lg:px-16">
       <div className="mx-auto max-w-3xl">
         <div className="flex flex-col items-center space-y-6">
-          <CheckIcon className="h-24 w-24 text-green-500" />
+          <Check className="h-24 w-24 text-green-500" />
           <h2 className="text-center text-3xl">Payment Successful</h2>
           <Card>
             <CardHeader>
@@ -99,24 +99,5 @@ export default function Success() {
         </div>
       </div>
     </div>
-  );
-}
-
-function CheckIcon(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
   );
 }

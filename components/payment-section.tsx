@@ -12,7 +12,8 @@ import {
   Wallet,
 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -123,17 +124,22 @@ export function PaymentSection({
           </div>
         </CardContent>
         <CardFooter className="flex justify-end gap-2">
-          <Button asChild disabled={!params.get("payment")}>
-            <Link
-              href={
-                Math.random() > 0.5
+          <Link
+            href={
+              params.get("payment")
+                ? Math.random() > 0.5
                   ? `/success?${params.toString()}`
                   : `/failed?${params.toString()}`
-              }
-            >
-              Complete Payment
-            </Link>
-          </Button>
+                : "#"
+            }
+            className={cn(
+              buttonVariants({
+                variant: params.get("payment") ? "default" : "secondary",
+              }),
+            )}
+          >
+            Complete Payment
+          </Link>
         </CardFooter>
       </Card>
     </>

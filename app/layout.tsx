@@ -6,7 +6,7 @@ import "./globals.css";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import { HomeIcon, ShoppingCartIcon } from "lucide-react";
+import { CircleDollarSign, HomeIcon, ShoppingCartIcon } from "lucide-react";
 
 import { merchantSchema } from "@/lib/schema";
 import { cn } from "@/lib/utils";
@@ -90,10 +90,17 @@ export default async function RootLayout({
                 </Link>
                 <Link
                   className="flex items-center gap-3 rounded-lg bg-background px-3 py-2 text-gray-900 transition-all hover:text-gray-900 dark:bg-background dark:text-gray-50 dark:hover:text-gray-50"
-                  href="#"
+                  href="/checkout"
                 >
                   <ShoppingCartIcon className="h-4 w-4" />
                   Checkout
+                </Link>
+                <Link
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                  href="#"
+                >
+                  <CircleDollarSign className="h-4 w-4" />
+                  Payments
                 </Link>
               </nav>
             </div>

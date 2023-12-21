@@ -14,8 +14,6 @@ import {
 } from "@/components/ui/table";
 import { useProductStore } from "@/lib/store";
 
-export const runtime = 'edge'
-
 export default function Success() {
   const products = useProductStore.getState().products.products;
   const totalPrice = products

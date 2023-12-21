@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { paymentMethods } from "@/constants/payment";
 import { X } from "lucide-react";
 
 import { useProductStore } from "@/lib/store";
@@ -14,7 +15,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-export default function Failed() {
+export default function Success({
+  searchParams,
+}: {
+  searchParams: { payment: keyof typeof paymentMethods };
+}) {
+  const paymentMethod = paymentMethods[searchParams.payment];
   const products = useProductStore.getState().products.products;
   const totalPrice = products
     .reduce((total, product) => total + product.price, 0)
@@ -65,6 +71,10 @@ export default function Failed() {
                     ))}
                   </TableBody>
                 </Table>
+              </div>
+              <div className="grid gap-2">
+                <h3 className="text-lg font-semibold">Payment Method:</h3>
+                <p className="text-sm">{paymentMethod}</p>
               </div>
               <div className="grid gap-2">
                 <h3 className="text-lg font-semibold">Total Amount:</h3>

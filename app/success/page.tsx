@@ -1,7 +1,9 @@
-import { Check } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { paymentMethods } from "@/constants/payment";
+import { Check } from "lucide-react";
 
+import { useProductStore } from "@/lib/store";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -12,9 +14,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useProductStore } from "@/lib/store";
 
-export default function Success() {
+export default function Success({
+  searchParams,
+}: {
+  searchParams: { payment: keyof typeof paymentMethods };
+}) {
+  const paymentMethod = paymentMethods[searchParams.payment];
   const products = useProductStore.getState().products.products;
   const totalPrice = products
     .reduce((total, product) => total + product.price, 0)
@@ -73,6 +79,10 @@ export default function Success() {
                     ))}
                   </TableBody>
                 </Table>
+              </div>
+              <div className="grid gap-2">
+                <h3 className="text-lg font-semibold">Payment Method:</h3>
+                <p className="text-sm">{paymentMethod}</p>
               </div>
               <div className="grid gap-2">
                 <h3 className="text-lg font-semibold">Total Amount:</h3>

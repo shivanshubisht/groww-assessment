@@ -1,11 +1,18 @@
 "use client";
 
-import { CheckIcon, CircleDollarSign, CreditCardIcon, Truck, Wallet } from "lucide-react";
 import type { Route } from "next";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import type { paymentMethods } from "@/constants/payment";
+import {
+  CheckIcon,
+  CircleDollarSign,
+  CreditCardIcon,
+  Truck,
+  Wallet,
+} from "lucide-react";
 
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -34,7 +41,11 @@ export function PaymentSection({
   const router = useRouter();
   const pathName = usePathname();
   const selectedPayment = params.get("payment");
-  const handleClick = (value: string) => {
+  const handleClick = (value: keyof typeof paymentMethods) => {
+    if (!availableMethods.includes(value)) {
+      console.log(value);
+      return;
+    }
     params.set("payment", value);
     router.replace(`${pathName}?${params.toString()}` as Route);
   };
@@ -63,59 +74,66 @@ export function PaymentSection({
             <div>{totalPrice}</div>
           </div>
           <div
-            className="flex items-center gap-4 rounded-lg border p-2"
-            onClick={() => handleClick("card")}
+            className={`flex items-center gap-4 rounded-lg border p-2 ${
+              !availableMethods.includes("CARDS") ? "text-gray-500" : ""
+            }`}
+            onClick={() => handleClick("CARDS")}
           >
             <CreditCardIcon className="h-6 w-6" />
             <span className="flex-grow">Card</span>
-            {selectedPayment === "card" && (
+            {selectedPayment === "CARDS" && (
               <CheckIcon className="h-6 w-6 text-green-500" />
             )}
           </div>
           <div
-            className="flex items-center gap-4 rounded-lg border p-2"
-            onClick={() => handleClick("upi")}
+            className={`flex items-center gap-4 rounded-lg border p-2 ${
+              !availableMethods.includes("UPI") ? "text-gray-500" : ""
+            }`}
+            onClick={() => handleClick("UPI")}
           >
             <CircleDollarSign className="h-6 w-6" />
             <span className="flex-grow">UPI</span>
-            {selectedPayment === "upi" && (
+            {selectedPayment === "UPI" && (
               <CheckIcon className="h-6 w-6 text-green-500" />
             )}
           </div>
           <div
-            className="flex items-center gap-4 rounded-lg border p-2"
-            onClick={() => handleClick("ewallet")}
+            className={`flex items-center gap-4 rounded-lg border p-2 ${
+              !availableMethods.includes("EWallet") ? "text-gray-500" : ""
+            }`}
+            onClick={() => handleClick("EWallet")}
           >
             <Wallet className="h-6 w-6" />
             <span className="flex-grow">E-Wallet</span>
-            {selectedPayment === "ewallet" && (
+            {selectedPayment === "EWallet" && (
               <CheckIcon className="h-6 w-6 text-green-500" />
             )}
           </div>
           <div
-            className="flex items-center gap-4 rounded-lg border p-2"
-            onClick={() => handleClick("cod")}
+            className={`flex items-center gap-4 rounded-lg border p-2 ${
+              !availableMethods.includes("COD") ? "text-gray-500" : ""
+            }`}
+            onClick={() => handleClick("COD")}
           >
             <Truck className="h-6 w-6" />
             <span className="flex-grow">Cash on Delivery</span>
-            {selectedPayment === "cod" && (
+            {selectedPayment === "COD" && (
               <CheckIcon className="h-6 w-6 text-green-500" />
             )}
           </div>
         </CardContent>
         <CardFooter className="flex justify-end gap-2">
-          <Link
-            className={buttonVariants({
-              variant: "default",
-            })}
-            href={
-              Math.random() > 0.5
-                ? `/success?${params.toString()}`
-                : "/failed?${params.toString()}"
-            }
-          >
-            Complete Payment
-          </Link>
+          <Button asChild disabled={!params.get("payment")}>
+            <Link
+              href={
+                Math.random() > 0.5
+                  ? `/success?${params.toString()}`
+                  : `/failed?${params.toString()}`
+              }
+            >
+              Complete Payment
+            </Link>
+          </Button>
         </CardFooter>
       </Card>
     </>

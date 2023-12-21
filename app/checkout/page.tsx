@@ -16,6 +16,8 @@ import {
 import { Separator } from "@/components/ui/separator";
 import EmptyCart from "@/components/empty-cart";
 
+export const runtime = "edge";
+
 export default async function Checkout() {
   const response = await fetch(
     `https://groww-intern-assignment.vercel.app/v1/api/order-details`,

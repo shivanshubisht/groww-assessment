@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BitcoinIcon, CreditCardIcon, MapPin, Phone } from "lucide-react";
+import {
+  BitcoinIcon,
+  CheckIcon,
+  CreditCardIcon,
+  MapPin,
+  Phone,
+} from "lucide-react";
 
 import { useProductStore } from "@/lib/store";
 import { Avatar } from "@/components/ui/avatar";
@@ -23,6 +29,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { PaymentSection } from "@/components/payment-section";
 
 export default function PaymentPage() {
   const data = useProductStore.getState().products;
@@ -102,54 +109,12 @@ export default function PaymentPage() {
           </Card>
         </div>
         <div className="flex flex-col gap-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Payment Methods</CardTitle>
-              <CardDescription>
-                Choose your preferred payment method.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex flex-col gap-4">
-              <div className="flex justify-between">
-                <div>Subtotal</div>
-                <div>{subTotal}</div>
-              </div>
-              <div className="flex justify-between">
-                <div>Delivery (5%)</div>
-                <div>{delivery}</div>
-              </div>
-              <Separator />
-              <div className="flex justify-between font-medium">
-                <div>Total</div>
-                <div>{totalPrice}</div>
-              </div>
-              <div className="flex items-center gap-4 rounded-lg border p-2">
-                <CreditCardIcon className="h-6 w-6" />
-                <span className="flex-grow">Credit Card</span>
-                <Button variant="default">Select</Button>
-              </div>
-              <div className="flex items-center gap-4 rounded-lg border p-2">
-                <CreditCardIcon className="h-6 w-6" />
-                <span className="flex-grow">Paypal</span>
-                <Button variant="default">Select</Button>
-              </div>
-              <div className="flex items-center gap-4 rounded-lg border p-2">
-                <BitcoinIcon className="h-6 w-6" />
-                <span className="flex-grow">Bitcoin</span>
-                <Button variant="default">Select</Button>
-              </div>
-            </CardContent>
-            <CardFooter className="flex justify-end gap-2">
-              <Link
-                className={buttonVariants({
-                  variant: "default",
-                })}
-                href={Math.random() > 0.5 ? "/success" : "/failed"}
-              >
-                Complete Payment
-              </Link>
-            </CardFooter>
-          </Card>
+          <PaymentSection
+            subTotal={subTotal}
+            delivery={delivery}
+            totalPrice={totalPrice}
+            availableMethods={data.paymentMethods}
+          />
           <Card>
             <CardHeader>
               <CardTitle>Shipping Details</CardTitle>

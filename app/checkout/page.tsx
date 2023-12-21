@@ -44,7 +44,9 @@ export default async function Checkout() {
       {data.products.length !== 0 ? (
         <>
           <div className="flex items-center gap-4">
-            <h1 className="text-lg font-semibold md:text-xl">Checkout</h1>
+            <h1 className="text-lg font-semibold md:text-xl lg:text-4xl">
+              Checkout
+            </h1>
           </div>
           <div className="flex flex-col gap-6 md:grid md:grid-cols-6">
             <div className="flex flex-col gap-6 md:col-span-4 lg:col-span-3 xl:col-span-4">

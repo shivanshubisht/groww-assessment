@@ -38,16 +38,16 @@ export default async function RootLayout({
   type Theme = keyof typeof merchantData.theme;
 
   const theme = Object.fromEntries(
-    Object.entries(merchantData.theme).map(([key, value]) => [
-      `${key}-groww`,
-      value,
-    ]),
+    Object.entries(merchantData.theme).map(
+      ([key, value]) => [`${key}-groww`, value] as const,
+    ),
   );
   console.log(merchantData.theme);
+  console.log(theme);
 
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* <Script
+      <Script
         id="theme-style"
         async
         dangerouslySetInnerHTML={{
@@ -59,10 +59,10 @@ export default async function RootLayout({
       });
     `,
         }}
-      /> */}
+      />
       <body
         className={cn(
-          "grid min-h-screen w-full bg-background font-sans antialiased lg:grid-cols-[280px_1fr]",
+          "bg-background-groww grid min-h-screen w-full font-sans antialiased lg:grid-cols-[280px_1fr]",
           fontSans.variable,
         )}
       >

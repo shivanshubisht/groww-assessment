@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import { X } from "lucide-react";
 
+import { useProductStore } from "@/lib/store";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -11,8 +13,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useProductStore } from "@/lib/store";
-import { X } from "lucide-react";
 
 export default function Failed() {
   const products = useProductStore.getState().products.products;
@@ -77,7 +77,7 @@ export default function Failed() {
             </CardContent>
           </Card>
           <Link
-            href="/checkout"
+            href="/success"
             className={buttonVariants({ variant: "default" })}
           >
             Retry Payment

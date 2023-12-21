@@ -4,7 +4,7 @@ export default function LoadingPage() {
   return (
     <>
       <div className="flex items-center gap-4">
-        <h1 className="text-lg font-semibold md:text-xl lg:text-4xl">
+        <h1 className="bg-[var(--foreground-groww)] text-lg font-semibold md:text-xl lg:text-4xl dark:bg-[var(--foreground-groww)]">
           Checkout
         </h1>
       </div>

@@ -31,6 +31,8 @@ export default async function Checkout() {
       .toFixed(2),
   );
 
+  await new Promise((resolve) => setTimeout(resolve, 1000));
+
   const delivery = Number((totalPrice * 0.05).toFixed(2));
 
   const finalPrice = Number((totalPrice + delivery).toFixed(2));
@@ -44,7 +46,7 @@ export default async function Checkout() {
       {data.products.length !== 0 ? (
         <>
           <div className="flex items-center gap-4">
-            <h1 className="text-lg font-semibold md:text-xl lg:text-4xl">
+            <h1 className="text-lg font-semibold text-[var(--foreground-groww)] md:text-xl lg:text-4xl">
               Checkout
             </h1>
           </div>

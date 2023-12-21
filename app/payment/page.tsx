@@ -46,7 +46,7 @@ export default function PaymentPage() {
   return (
     <>
       <div className="flex items-center gap-4">
-        <h1 className="text-lg font-semibold md:text-xl lg:text-4xl">
+        <h1 className="text-lg font-semibold text-[var(--foreground-groww)] md:text-xl lg:text-4xl dark:text-[var(--foreground-groww)]">
           Payments
         </h1>
       </div>

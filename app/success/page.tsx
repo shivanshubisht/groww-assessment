@@ -4,6 +4,7 @@ import { paymentMethods } from "@/constants/payment";
 import { Check } from "lucide-react";
 
 import { useProductStore } from "@/lib/store";
+import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -37,7 +38,9 @@ export default function Success({
       <div className="mx-auto max-w-3xl">
         <div className="flex flex-col items-center space-y-6">
           <Check className="h-24 w-24 text-green-500" />
-          <h2 className="text-center text-3xl">Payment Successful</h2>
+          <h2 className="text-center text-3xl text-[var(--foreground-groww)]">
+            Payment Successful
+          </h2>
           <Card>
             <CardHeader>
               <CardTitle>Order Summary</CardTitle>
@@ -102,7 +105,10 @@ export default function Success({
           </Card>
           <Link
             href="/checkout"
-            className={buttonVariants({ variant: "default" })}
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "bg-[var(--primary-groww)] text-[var(--primary-foreground-groww)] hover:bg-[var(--primary-foreground-groww)] hover:text-[var(--primary-groww)]",
+            )}
           >
             Return to Home
           </Link>

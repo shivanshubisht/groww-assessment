@@ -4,6 +4,7 @@ import { paymentMethods } from "@/constants/payment";
 import { X } from "lucide-react";
 
 import { useProductStore } from "@/lib/store";
+import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -30,7 +31,9 @@ export default function Success({
       <div className="mx-auto max-w-3xl">
         <div className="flex flex-col items-center space-y-6">
           <X className="h-24 w-24 text-red-500" />
-          <h2 className="text-center text-3xl">Transaction Failed</h2>
+          <h2 className="text-center text-3xl text-[var(--foreground-groww)]">
+            Transaction Failed
+          </h2>
           <Card>
             <CardHeader>
               <CardTitle>Payment Pending</CardTitle>
@@ -88,7 +91,10 @@ export default function Success({
           </Card>
           <Link
             href="/success"
-            className={buttonVariants({ variant: "default" })}
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "bg-[var(--primary-groww)] text-[var(--primary-foreground-groww)] hover:bg-[var(--primary-foreground-groww)] hover:text-[var(--primary-groww)]",
+            )}
           >
             Retry Payment
           </Link>

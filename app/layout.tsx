@@ -44,6 +44,12 @@ export default async function RootLayout({
   );
   console.log(merchantData.theme);
   console.log(theme);
+  // {
+  //   '--background-groww': 'hsl(20, 14.3%, 4.1%)',
+  //   '--foreground-groww': 'hsl(0, 0%, 95%)',
+  //   '--primary-groww': 'hsl(142.1, 70.6%, 45.3%)',
+  //   '--primary-foreground-groww': 'hsl(144.9, 80.4%, 10%)'
+  // }
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -62,13 +68,13 @@ export default async function RootLayout({
       />
       <body
         className={cn(
-          "bg-background-groww grid min-h-screen w-full font-sans antialiased lg:grid-cols-[280px_1fr]",
+          "grid min-h-screen w-full bg-[var(--background-groww)] font-sans antialiased lg:grid-cols-[280px_1fr]",
           fontSans.variable,
         )}
       >
-        <aside className="hidden border-r bg-background/40 lg:block dark:bg-background/40">
+        <aside className="hidden border-r border-[var(--primary-groww)] lg:block dark:bg-[var(--background-groww)]">
           <div className="sticky top-0 flex flex-col gap-2">
-            <div className="flex h-[60px] items-center border-b px-6">
+            <div className="flex h-[60px] items-center border-b border-[var(--primary-groww)] px-6">
               <Link className="flex items-center gap-2 font-semibold" href="#">
                 <Image
                   src={merchantData.merchantLogo}
@@ -76,27 +82,29 @@ export default async function RootLayout({
                   width="24"
                   height="24"
                 />
-                <span>{merchantData.merchantName}</span>
+                <span className="text-[var(--foreground-groww)]">
+                  {merchantData.merchantName}
+                </span>
               </Link>
             </div>
             <div className="flex-1 overflow-auto py-2">
               <nav className="grid items-start px-4 text-sm font-medium">
                 <Link
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-[var(--foreground-groww)] transition-all hover:text-[var(--primary-foreground-groww)] dark:text-[var(--foreground-groww)] dark:hover:text-[var(--primary-foreground-groww)]"
                   href="#"
                 >
                   <HomeIcon className="h-4 w-4" />
                   Home
                 </Link>
                 <Link
-                  className="flex items-center gap-3 rounded-lg bg-background px-3 py-2 text-gray-900 transition-all hover:text-gray-900 dark:bg-background dark:text-gray-50 dark:hover:text-gray-50"
+                  className="flex items-center gap-3 rounded-lg bg-[var(--primary-groww)] px-3 py-2 text-[var(--primary-foreground-groww)] transition-all hover:text-[var(--primary-foreground-groww)] dark:bg-[var(--primary-groww)] dark:text-[var(--primary-foreground-groww)] dark:hover:text-[var(--primary-foreground-groww)]"
                   href="/checkout"
                 >
                   <ShoppingCartIcon className="h-4 w-4" />
                   Checkout
                 </Link>
                 <Link
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-[var(--foreground-groww)] transition-all hover:text-[var(--primary-foreground-groww)] dark:text-[var(--foreground-groww)] dark:hover:text-[var(--primary-foreground-groww)]"
                   href="#"
                 >
                   <CircleDollarSign className="h-4 w-4" />
@@ -107,7 +115,7 @@ export default async function RootLayout({
           </div>
         </aside>
         <div className="relative flex min-h-screen flex-col">
-          <header className="sticky top-0 flex h-14 items-center gap-4 border-b bg-background/40 px-6 backdrop-blur-md lg:h-[60px] dark:bg-background/40">
+          <header className="sticky top-0 flex h-14 items-center gap-4 border-b border-[var(--primary-groww)] bg-[var(--background-groww)] px-6 backdrop-blur-md lg:h-[60px] dark:bg-[var(--background-groww)]">
             <Link className="lg:hidden" href="#">
               <Image
                 src={merchantData.merchantLogo}
